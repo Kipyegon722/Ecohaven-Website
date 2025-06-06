@@ -1,9 +1,8 @@
-// EcoHaven Website JavaScript Enhancement
-// Author: Victor Kipyegon
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Mobile Navigation Toggle
+    //  mobilee nav 
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('active');
     });
     
-    // Close mobile menu when clicking on nav links
+    // .. close mobil menuwhenever navigations links are clicked
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 2. Smooth Scrolling for Navigation Links
+    //  Navigation Links scrolling smoother
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -35,14 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 3. Navbar Background Change on Scroll
+    //navigation bar background chnage scrolling
     const navbar = document.querySelector('.navbar');
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Add background opacity when scrolling
+        // background opacity on scrolling
         if (scrollTop > 50) {
             navbar.style.backgroundColor = 'rgba(46, 125, 50, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.backdropFilter = 'none';
         }
         
-        // Hide/show navbar on scroll (optional)
+        // hide or show navbar on scroll 
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
     
-    // 4. Animated Card Reveals on Scroll
+    // animated cards
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Apply animation to cards
+    // animation applied on cards
     document.querySelectorAll('.card, .lifestyle-card').forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
@@ -83,11 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
     
-    // 5. Interactive CTA Button with Ripple Effect
+    //  interactive cta with effects
     const ctaButton = document.querySelector('.cta-button');
     
     ctaButton.addEventListener('click', function(e) {
-        // Create ripple effect
+        // riple effects
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.overflow = 'hidden';
         this.appendChild(ripple);
         
-        // Show modal or perform action
+        // show perform action
         showGreenJourneyModal();
         
         // Remove ripple after animation
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 600);
     });
     
-    // Add ripple animation keyframes
+    //  ripple animation keyframes
     const style = document.createElement('style');
     style.textContent = `
         @keyframes ripple {
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
     
-    // 6. Green Journey Modal
+    // modal for green journey
     function showGreenJourneyModal() {
         const modal = document.createElement('div');
         modal.innerHTML = `
@@ -182,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        // Add modal animation
+        // modal animation added
         const modalStyle = document.createElement('style');
         modalStyle.textContent = `
             @keyframes modalSlideIn {
@@ -200,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.body.appendChild(modal);
         
-        // Close modal functionality
+        // close modal function
         const closeBtn = modal.querySelector('.modal-close');
         const overlay = modal.querySelector('.modal-overlay');
         
@@ -217,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === overlay) closeModal();
         });
         
-        // Add fadeOut animation
+        // fadeOut animation
         const fadeStyle = document.createElement('style');
         fadeStyle.textContent = `
             @keyframes fadeOut {
@@ -230,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(fadeStyle);
     }
     
-    // 7. Dynamic Eco Tips Rotation
+    // dynamic  tips rotation
     const ecoTips = [
         "💡 Switch to LED bulbs - they use 75% less energy!",
         "🚿 A 5-minute shower saves 10-25 gallons of water!",
@@ -281,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tipIndex = (tipIndex + 1) % ecoTips.length;
     }
     
-    // Add tip animations
+    // tip animationss
     const tipStyle = document.createElement('style');
     tipStyle.textContent = `
         @keyframes tipSlideIn {
@@ -303,19 +302,19 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(tipStyle);
     
-    // Show first tip after 3 seconds, then every 15 seconds
+    // first tip is displayedafter 3 seconds then after every 15 secs
     setTimeout(() => {
         createFloatingTip();
         setInterval(createFloatingTip, 15000);
     }, 3000);
     
-    // 8. Contact Form Enhancement (if you add a form later)
+    //  for contact form function
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
     
-    // 9. Theme Toggle (Dark/Light Mode)
+    // themes for dark and light modes
     function createThemeToggle() {
     const toggle = document.createElement('button');
     toggle.innerHTML = '🌙';
@@ -337,11 +336,11 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: all 0.3s ease;
     `;
     
-    // Check if dark mode was previously enabled
+    
     const isDarkStored = localStorage.getItem('darkMode') === 'true';
     let isDark = isDarkStored;
     
-    // Apply stored theme on page load
+    
     if (isDark) {
         applyDarkMode();
         toggle.innerHTML = '☀️';
@@ -349,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function applyDarkMode() {
-        // Create or update dark mode styles
+        //  update for  dark mode styles
         let darkModeStyle = document.getElementById('dark-mode-styles');
         if (!darkModeStyle) {
             darkModeStyle = document.createElement('style');
@@ -436,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Hover effects
+    // hover effects
     toggle.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.1)';
     });
@@ -448,10 +447,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(toggle);
     }
     
-    // Add theme toggle
+    // ..theme toggle
     createThemeToggle();
     
-    // 10. Performance Optimization - Lazy Loading for Images
+    //  performance optimization for Images
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -471,8 +470,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 11. Enhanced Accessibility
-    // Skip to main content
+    //  Enhanced Accessibility
+    
     const skipLink = document.createElement('a');
     skipLink.href = '#main';
     skipLink.textContent = 'Skip to main content';
@@ -499,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.body.insertBefore(skipLink, document.body.firstChild);
     
-    // 12. Add Loading Animation
+    //loading animation
     function showPageLoader() {
         const loader = document.createElement('div');
         loader.innerHTML = `
@@ -537,7 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(spinStyle);
         document.body.appendChild(loader);
         
-        // Hide loader after page loads
+        // hides loader te page loads 
         window.addEventListener('load', function() {
             setTimeout(() => {
                 loader.style.opacity = '0';
@@ -553,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Show loader only on first visit
+    // shows loader only at the start of page
     if (!sessionStorage.getItem('visited')) {
         showPageLoader();
         sessionStorage.setItem('visited', 'true');
